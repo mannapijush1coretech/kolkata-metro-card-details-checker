@@ -18,6 +18,9 @@ div{
   font-family: 'Roboto','SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
     'Arial', sans-serif;
 }
+body{
+  background-color: black;
+}
 h1 {
   font-size: 45px;
 }
