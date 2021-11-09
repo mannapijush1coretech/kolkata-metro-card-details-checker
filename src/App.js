@@ -1,14 +1,16 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useRef } from 'react';
 import './App.css';
-import {Button} from 'react-bootstrap';
+import {Button,TextField,Container,Snackbar,BottomNavigation,BottomNavigationAction} from '@material-ui/core';
+import {Alert} from '@material-ui/lab';
+import {SpinnerDotted} from 'spinners-react';
+import {FaceTwoTone,CloudDownload,LocationCityTwoTone} from '@material-ui/icons'
 
 
 function App() {
-  const [resdef,setResDef]=useState({
-    status:'-200',
-    msg:"Invalid Card!"
-  });
+  const txtRef=useRef('');
+  const [resdef,setResDef]=useState(false);
+  const [isLoading,setIsLoading]=useState('');
   const [cardNo,setCardNo]=useState('');
   const [data,setData]=useState({
     data:'',
@@ -16,24 +18,72 @@ function App() {
   });
 
   const getCard= async() =>{
+    var cardnum=txtRef.current.value;
+    setCardNo(cardnum);
+    console.log("id -"+cardnum);
     //const res=await fetch(process.env.API_URL+"");
-    if(cardNo.length==9){
-      console.log(cardNo);
-      const res=await fetch(process.env.REACT_APP_API_URL+"cardNumber="+cardNo+"&reCardNumber="+cardNo);
-      console.log(res);
+    if(cardnum.length==9){
+      setResDef(true);
+      setIsLoading(true);
+      console.log(cardnum);
+      const res=await fetch(process.env.REACT_APP_API_URL+cardnum)
+      .then(res=>res.json())
+      .then(res=> {setData({
+        data:res,
+        loading:false
+      })})
+      setIsLoading(false);
+      console.log(data.data);
     }else{
       
     }
   }
   
   return (
-    <div className="vw-75">
-      <h2>Kolkata Metro Card Utility</h2>
-      <input value={cardNo} onChange={e=>setCardNo(e.target.value)} className="form-control vw-25" type="text" maxLength="9" minLength="9"/>
-      <Button onClick={getCard}className="m-2">Get Card Details</Button>
+    <Container maxWidth="sm">
+      <h2 className="centerTxt">Kolkata Metro Card Utility</h2>
+      <TextField color="secondary"inputRef={txtRef}id="outlined-basic" fullWidth variant="filled"label="Enter Card Number"  />
+      <center><Button color="secondary" startIcon={<CloudDownload/>} variant="contained" onClick={getCard}className="mt-2 centerItem">Get Card Details</Button></center>
       <br />
-      <div>{resdef.status=='-200'?resdef.msg:""}</div>
-    </div>
+      {!resdef?'':(
+        <div className="p-2 bg-dark fw-normal border border-danger rounded">
+          <div >{
+          isLoading?(<div className="centerItem"><SpinnerDotted color="#ad0048"/></div>): (
+            <div>{
+              data.data.balance>=30 && 
+                <p className="centerTxt text-success fs-5">Balance - ₹ {data.data.balance}</p>
+              }
+              {
+                data.data.balance<30 &&
+                <p className="centerTxt text-danger fs-5">Balance - ₹ {data.data.balance}</p>
+              }
+              <div className="text-warning">
+              Last Journey Details  -
+              <br/><p className="text-info centerTxt">
+              {data.data.startLocation+" - "+data.data.endLocation}</p><hr></hr>
+              </div>
+              <div className="text-warning">
+              Card Validity Upto -
+              <br/><p className="text-info centerTxt">
+              {data.data.strValidUpto?data.data.strValidUpto:"Expired or Not found !"}</p><hr></hr>
+              
+              </div>
+              <div className="text-warning">
+              Card Last Used on  -
+              <br/><p className="text-info centerTxt">
+              {data.data.strLastUsedInGateOn?data.data.strLastUsedInGateOn+" at "+data.data.endLocation+" Gate":"Expired or Not found !"}</p>
+              <br/><Alert severity="success">Balance and other details may vary . Please recheck with station!</Alert>
+              </div>
+              <br/>
+              
+            </div>
+          )
+          }</div>
+        
+        </div>
+      )
+      }
+    </Container>
   );
 }
 

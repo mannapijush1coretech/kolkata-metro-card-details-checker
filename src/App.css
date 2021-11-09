@@ -5,22 +5,28 @@ main {
   font-family: 'Roboto','SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
     'Arial', sans-serif;
   hyphens: auto;
-  line-height: 1.65;
   margin: 0 auto;
   max-width: 680px;
   min-height: 100vh;
   padding: 72px 0;
   text-align: center;
 }
-div{
+.leftTxt{
+  text-align: left !important;
+}
+.centerTxt{
+  text-align: center !important;
+}
+.centerItem{
   text-align: center;
   align-content: center;
+}
+div{ 
   font-family: 'Roboto','SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
     'Arial', sans-serif;
+    font-size: 14px;
 }
-body{
-  background-color: black;
-}
+
 h1 {
   font-size: 45px;
 }
