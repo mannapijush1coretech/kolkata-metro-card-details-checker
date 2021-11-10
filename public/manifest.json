@@ -1,15 +1,32 @@
 {
-  "short_name": "Metro Card Utility",
-  "name": "Metro Card Utility - Pijush",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "any",
-      "type": "image/x-icon"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#ff0000",
-  "background_color": "#ffffff"
+    "theme_color": "#ec051a",
+    "background_color": "#97bba9",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "Kolkata Metro Card Utility",
+    "short_name": "Kolkata Metro Card",
+    "description": "Check Balance , Last Journey Details , Validity of the Kolkata Metro Card",
+    "icons": [
+        {
+            "src": "/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
 }
