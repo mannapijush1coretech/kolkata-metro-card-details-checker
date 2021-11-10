@@ -1,13 +1,25 @@
 import React from 'react';
 import { useEffect, useState,useRef } from 'react';
 import './App.css';
-import {Button,TextField,Container,Snackbar,BottomNavigation,BottomNavigationAction} from '@material-ui/core';
+import {Button,TextField,Container,AppBar,Typography,Toolbar, IconButton} from '@material-ui/core';
 import {Alert} from '@material-ui/lab';
 import {SpinnerDotted} from 'spinners-react';
-import {FaceTwoTone,CloudDownload,LocationCityTwoTone} from '@material-ui/icons'
-
+import {CloudDownload, CloudOff, PaymentOutlined} from '@material-ui/icons'
+import {Offline,Online} from 'react-detect-offline'
 
 function App() {
+
+  //Theme init
+
+  //Dummy Error Handling JSON
+  const dummyErr={
+    "status":1,
+    "balance":"N/A",
+    "startLocation":"Server / Internet",
+    "endLocation":"Error",
+    "strValidUpto":"Check internet connection or Try Later !"
+  }
+  //Data Variable Init
   const txtRef=useRef('');
   const [resdef,setResDef]=useState(false);
   const [isLoading,setIsLoading]=useState('');
@@ -32,6 +44,12 @@ function App() {
         data:res,
         loading:false
       })})
+      .catch(function(error){
+        setData({
+          data:dummyErr,
+          loading:false
+        })
+      })
       setIsLoading(false);
       console.log(data.data);
     }else{
@@ -40,9 +58,19 @@ function App() {
   }
   
   return (
+      <div>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start"><PaymentOutlined/></IconButton>
+          <Typography variant="h6">
+          Kolkata Metro Card 
+          </Typography>
+        </Toolbar>
+      </AppBar>
     <Container maxWidth="sm">
-      <h2 className="centerTxt">Kolkata Metro Card Utility</h2>
-      <TextField color="secondary"inputRef={txtRef}id="outlined-basic" fullWidth variant="filled"label="Enter Card Number"  />
+<Online>
+      <h2 className="centerTxt"></h2>
+      <TextField color="primary"inputRef={txtRef}id="outlined-basic" fullWidth variant="filled"label="Enter Card Number"  />
       <center><Button color="secondary" startIcon={<CloudDownload/>} variant="contained" onClick={getCard}className="mt-2 centerItem">Get Card Details</Button></center>
       <br />
       {!resdef?'':(
@@ -51,7 +79,7 @@ function App() {
           isLoading?(<div className="centerItem"><SpinnerDotted color="#ad0048"/></div>): (
             <div>{
               data.data.balance>=30 && 
-                <p className="centerTxt text-success fs-5">Balance - ₹ {data.data.balance}</p>
+                <p className="centerTxt fs-5">Balance - ₹ {data.data.balance}</p>
               }
               {
                 data.data.balance<30 &&
@@ -83,7 +111,16 @@ function App() {
         </div>
       )
       }
+      </Online>
+      <Offline>
+        <br/><center>
+        <CloudOff className="m-5 centerItem largeIcon"/>
+        <Typography variant="h6">You Are Offline</Typography>
+        <p>Check your internet connection !</p>
+        </center>
+      </Offline>
     </Container>
+    </div>
   );
 }
 

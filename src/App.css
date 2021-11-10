@@ -11,6 +11,9 @@ main {
   padding: 72px 0;
   text-align: center;
 }
+.largeIcon{
+  transform: scale(3.5);
+}
 .leftTxt{
   text-align: left !important;
 }
