@@ -74,7 +74,7 @@ function App() {
       
     <Container maxWidth="sm">
 <Online>
-      <h2 className="centerTxt"></h2>
+      <h1 className="p-2 centerTxt h3">Kolkata Metro Card Utility</h1>
       <TextField color="primary"inputRef={txtRef}id="outlined-basic" fullWidth variant="filled"label="Enter Card Number"  />
       <center><Button color="secondary" startIcon={<CloudDownload/>} variant="contained" onClick={getCard}className="mt-2 centerItem">Get Card Details</Button></center>
       <br />
