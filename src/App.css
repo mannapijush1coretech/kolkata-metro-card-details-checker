@@ -11,6 +11,11 @@ main {
   padding: 72px 0;
   text-align: center;
 }
+.btm{
+  width: '50%';
+  position: 'fixed';
+  bottom: 0;
+}
 .largeIcon{
   transform: scale(3.5);
 }

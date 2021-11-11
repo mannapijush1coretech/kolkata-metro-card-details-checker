@@ -1,16 +1,28 @@
 import React from 'react';
 import { useEffect, useState,useRef } from 'react';
 import './App.css';
-import {Button,TextField,Container,AppBar,Typography,Toolbar, IconButton} from '@material-ui/core';
+import Footer from './Footer';
+import {Button,TextField,Container,AppBar,Typography,Toolbar, IconButton,BottomNavigationAction, makeStyles,Divider} from '@material-ui/core';
 import {Alert} from '@material-ui/lab';
 import {SpinnerDotted} from 'spinners-react';
-import {CloudDownload, CloudOff, PaymentOutlined} from '@material-ui/icons'
+import {CloudDownload, CloudOff, PaymentOutlined,RestoreOutlined} from '@material-ui/icons'
 import {Offline,Online} from 'react-detect-offline'
 
 function App() {
 
   //Theme init
-
+  const useStyles=makeStyles({
+    root:{
+      position: "fixed",
+      bottom: "0px",
+      left: "0px",
+      right: "0px",
+      width: "100%",
+      height: "60px",
+      backgroundColor: "#24242D"
+    },
+  });
+  const classes=useStyles();
   //Dummy Error Handling JSON
   const dummyErr={
     "status":1,
@@ -59,14 +71,7 @@ function App() {
   
   return (
       <div>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start"><PaymentOutlined/></IconButton>
-          <Typography variant="h6">
-          Kolkata Metro Card 
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      
     <Container maxWidth="sm">
 <Online>
       <h2 className="centerTxt"></h2>
@@ -74,7 +79,7 @@ function App() {
       <center><Button color="secondary" startIcon={<CloudDownload/>} variant="contained" onClick={getCard}className="mt-2 centerItem">Get Card Details</Button></center>
       <br />
       {!resdef?'':(
-        <div className="p-2 bg-dark fw-normal border border-danger rounded">
+        <div className="p-2 fw-normal border border-danger rounded">
           <div >{
           isLoading?(<div className="centerItem"><SpinnerDotted color="#ad0048"/></div>): (
             <div>{
@@ -99,7 +104,7 @@ function App() {
               <div className="text-warning">
               Card Last Used on  -
               <br/><p className="text-info centerTxt">
-              {data.data.strLastUsedInGateOn?data.data.strLastUsedInGateOn+" at "+data.data.endLocation+" Gate":"Expired or Not found !"}</p>
+              {data.data.strLastUsedInGateOn?data.data.strLastUsedInGateOn+" at "+data.data.endLocation+" Gate":"Expired or Not found !"}</p><Divider/>
               <br/><Alert severity="success">Balance and other details may vary . Please recheck with station!</Alert>
               </div>
               <br/>
@@ -120,6 +125,8 @@ function App() {
         </center>
       </Offline>
     </Container>
+
+    
     </div>
   );
 }

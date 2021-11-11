@@ -6,6 +6,8 @@ import * as serviceWorker from './serviceWorker';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {red} from '@material-ui/core/colors'
+import Footer from './Footer';
+import Header from './Header';
 
 const theme = createTheme({
     palette: {
@@ -20,7 +22,9 @@ const theme = createTheme({
 ReactDOM.render(
 <ThemeProvider theme={theme}>
     <CssBaseline />
-    <App />
+    <Header/>
+      <App />
+    <Footer className="btm"/>
 </ThemeProvider>
     
 , document.getElementById('root'));
