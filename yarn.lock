@@ -10412,6 +10412,11 @@
     "inherits" "^2.0.1"
     "safe-buffer" "^5.0.1"
 
+"share-text-to-whatsapp@^1.0.2":
+  "integrity" "sha512-vyOa8WAjQyfX9xaFPUgY9vvPQHeER6CFVK+HeNWfFw8sDUvpsgWOs8ait37/u0WwQ4EIr/8etKjRcxSMKv3z3A=="
+  "resolved" "https://registry.npmjs.org/share-text-to-whatsapp/-/share-text-to-whatsapp-1.0.2.tgz"
+  "version" "1.0.2"
+
 "shebang-command@^1.2.0":
   "integrity" "sha1-RKrGW2lbAzmJaMOfNj/uXer98eo="
   "resolved" "https://registry.npmjs.org/shebang-command/-/shebang-command-1.2.0.tgz"

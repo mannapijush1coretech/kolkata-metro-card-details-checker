@@ -1,17 +1,17 @@
 import React from 'react';
 import { useEffect, useState,useRef } from 'react';
 import './App.css';
-import Footer from './Footer';
-import {Button,TextField,Container,AppBar,Typography,Toolbar, IconButton,BottomNavigationAction, makeStyles,Divider} from '@material-ui/core';
+import { hasNativeSharingSupport, shareTextToWhatsApp, shareTextViaNativeSharing } from 'share-text-to-whatsapp';
+import {Button,TextField,Container,AppBar,Typography,Toolbar, IconButton,BottomNavigationAction, makeStyles,Divider,Fab} from '@material-ui/core';
 import {Alert} from '@material-ui/lab';
 import {SpinnerDotted} from 'spinners-react';
-import {CloudDownload, CloudOff, PaymentOutlined,RestoreOutlined} from '@material-ui/icons'
+import {CloudDownload, CloudOff, PaymentOutlined,RestoreOutlined, WhatsApp} from '@material-ui/icons'
 import {Offline,Online} from 'react-detect-offline'
 
 function App() {
 
   //Theme init
-  const useStyles=makeStyles({
+  const useStyles=makeStyles((theme) =>({
     root:{
       position: "fixed",
       bottom: "0px",
@@ -21,7 +21,26 @@ function App() {
       height: "60px",
       backgroundColor: "#24242D"
     },
-  });
+    fab:{
+      position:'absolute',
+      bottom:theme.spacing(8),
+      right:theme.spacing(2),
+      
+    },
+    extendIcn:{
+      marginRight:theme.spacing(1)
+    }
+  }));
+  const waSend={
+    message:`
+    https://metro-card-checker.vercel.app
+    Kolkata Metro Card Utility - *Check Metro Card Balance*,
+    Validity, 
+    Last Recharged Details, 
+    *Last Travel Details*`,
+    title:'Kolkata Metro Card Utility',
+    url:'https://metro-card-checker.vercel.app'
+  };
   const classes=useStyles();
   //Dummy Error Handling JSON
   const dummyErr={
@@ -40,7 +59,15 @@ function App() {
     data:'',
     loading:true
   });
-
+  const sendWaBtn=async()=>{
+    if(hasNativeSharingSupport()){
+      shareTextViaNativeSharing(waSend);
+    }else{
+      shareTextToWhatsApp(waSend.message);
+    }
+    
+    
+  }
   const getCard= async() =>{
     var cardnum=txtRef.current.value;
     setCardNo(cardnum);
@@ -124,6 +151,7 @@ function App() {
         <p>Check your internet connection !</p>
         </center>
       </Offline>
+      <Fab onClick={sendWaBtn}variant="extended"className={classes.fab} color="primary" aria-label="whatsapp share"><WhatsApp className={classes.extendIcn}/>  Share </Fab>
     </Container>
 
     

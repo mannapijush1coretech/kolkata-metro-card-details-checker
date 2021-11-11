@@ -5,16 +5,18 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {red} from '@material-ui/core/colors'
+import {red,green,lightGreen} from '@material-ui/core/colors'
 import Footer from './Footer';
 import Header from './Header';
 
 const theme = createTheme({
     palette: {
       type: "dark",
-      primary:red,
+      primary:{
+        main:red[700]
+      },
       secondary:{
-          main:'#b9f6ca',
+          main:green[700],
       }
     }
   });
