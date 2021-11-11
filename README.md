@@ -1,7 +1,9 @@
 
 # Kolkata Metro Card Balance Checker
 Created with React.JS Framework & Material UI
+
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/mannapijush1coretech/kolkata-metro-card-details-checker)
+
 *Author* - Pijush Manna © 2021
 
 [Click to Go Live Website](https://metro-card-checker.vercel.app)
