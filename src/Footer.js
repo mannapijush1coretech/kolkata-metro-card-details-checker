@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useState,useRef } from 'react';
+import { hasNativeSharingSupport, shareTextToWhatsApp, shareTextViaNativeSharing } from 'share-text-to-whatsapp';
 import {Mood,WhatsApp} from '@material-ui/icons'
 import {Button,TextField,Container,AppBar,Typography,Toolbar, IconButton, BottomNavigation,BottomNavigationAction,makeStyles,Chip,Avatar, Fab} from '@material-ui/core';
 
