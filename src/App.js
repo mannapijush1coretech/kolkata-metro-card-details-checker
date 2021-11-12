@@ -28,9 +28,12 @@ function App() {
       
     },
     extendIcn:{
-      marginRight:theme.spacing(1)
+      
     }
   }));
+  
+  const classes=useStyles();
+  //Dummy Error Handling JSON
   const waSend={
     message:`
     https://metro-card-checker.vercel.app
@@ -41,8 +44,7 @@ function App() {
     title:'Kolkata Metro Card Utility',
     url:'https://metro-card-checker.vercel.app'
   };
-  const classes=useStyles();
-  //Dummy Error Handling JSON
+
   const dummyErr={
     "status":1,
     "balance":"N/A",
@@ -59,15 +61,7 @@ function App() {
     data:'',
     loading:true
   });
-  const sendWaBtn=async()=>{
-    if(hasNativeSharingSupport()){
-      shareTextViaNativeSharing(waSend);
-    }else{
-      shareTextToWhatsApp(waSend.message);
-    }
-    
-    
-  }
+
   const getCard= async() =>{
     var cardnum=txtRef.current.value;
     setCardNo(cardnum);
@@ -151,9 +145,9 @@ function App() {
         <p>Check your internet connection !</p>
         </center>
       </Offline>
-      <Fab onClick={sendWaBtn}variant="extended"className={classes.fab} color="primary" aria-label="whatsapp share"><WhatsApp className={classes.extendIcn}/>  Share </Fab>
+      
     </Container>
-
+    
     
     </div>
   );
