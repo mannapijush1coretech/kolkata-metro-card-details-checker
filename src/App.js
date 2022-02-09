@@ -42,7 +42,7 @@ function App() {
     Last Recharged Details, 
     *Last Travel Details*`,
     title:'Kolkata Metro Card Utility',
-    url:'https://metro-card-checker.vercel.app'
+    url:'https://metrocard.itspijush.eu.org/'
   };
 
   const dummyErr={
