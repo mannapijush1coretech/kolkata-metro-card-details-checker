@@ -36,7 +36,7 @@ function App() {
   //Dummy Error Handling JSON
   const waSend={
     message:`
-    https://metro-card-checker.vercel.app
+    https://metrocard.itspijush.eu.org
     Kolkata Metro Card Utility - *Check Metro Card Balance*,
     Validity, 
     Last Recharged Details, 
