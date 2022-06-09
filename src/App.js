@@ -97,9 +97,7 @@ function App() {
 <Online>
       <h1 className="p-2 mt-4 centerTxt h3">Kolkata Metro Card Utility</h1>
         <h3 className="p-2 mt-4 centerTxt h5">Thank your for using Now this is closed</h3>
-      //<TextField color="primary"inputRef={txtRef}id="outlined-basic" fullWidth variant="filled"label="Enter Card Number"  />
-      //<center><Button color="secondary" startIcon={<CloudDownload/>} variant="contained" onClick={getCard}className="mt-2 centerItem">Get Card Details</Button></center>
-      <br />
+           <br />
       {!resdef?'':(
         <div className="p-2 fw-normal border border-danger rounded">
           <div >{
